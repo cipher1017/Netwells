@@ -1,0 +1,31 @@
+# Netwells Hotspot Portal — production stack.
+# Host nginx reverse-proxies hotspot.netwells.co.ke -> 127.0.0.1:8160 (this app),
+# and terminates TLS (certbot). SQLite lives on a named volume so it survives
+# rebuilds.
+services:
+  app:
+    build: .
+    image: hotspot-app:latest
+    container_name: hotspot-app
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./.env:/app/.env:ro
+      - hotspot-data:/data
+    ports:
+      - "127.0.0.1:8160:80"
+
+  scheduler:
+    image: hotspot-app:latest
+    container_name: hotspot-scheduler
+    restart: unless-stopped
+    depends_on:
+      - app
+    env_file: .env
+    volumes:
+      - ./.env:/app/.env:ro
+      - hotspot-data:/data
+    command: php artisan schedule:work
+
+volumes:
+  hotspot-data:
