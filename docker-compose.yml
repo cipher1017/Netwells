@@ -26,6 +26,10 @@ services:
       - ./.env:/app/.env:ro
       - hotspot-data:/data
     command: php artisan schedule:work
+    # This container runs the scheduler, not the web server, so the image's
+    # HTTP healthcheck doesn't apply.
+    healthcheck:
+      disable: true
 
 volumes:
   hotspot-data:
