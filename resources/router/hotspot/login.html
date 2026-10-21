@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Netwells WiFi</title>
+<meta http-equiv="refresh" content="0; url={{PORTAL_URL}}/?mac=$(mac)&ip=$(ip)&router={{ROUTER_IDENTITY}}&login=$(link-login-only)&dst=$(link-orig-esc)">
+<style>body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#f3f5f7;color:#1a2b34;text-align:center;padding:40px 16px}</style>
+</head>
+<body>
+<p>Connecting to Netwells WiFi&hellip;</p>
+<script type="text/javascript">
+location.href = "{{PORTAL_URL}}/?mac=$(mac)&ip=$(ip)&router={{ROUTER_IDENTITY}}&login=$(link-login-only)&dst=$(link-orig-esc)";
+</script>
+<noscript>
+<p><a href="{{PORTAL_URL}}/?mac=$(mac)&ip=$(ip)&router={{ROUTER_IDENTITY}}&login=$(link-login-only)&dst=$(link-orig-esc)">Tap here to continue</a></p>
+</noscript>
+</body>
+</html>
